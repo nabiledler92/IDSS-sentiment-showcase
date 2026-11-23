@@ -1,0 +1,24 @@
+{
+  "n_results": 20,
+  "best_overall": {
+    "condition": "(b) SMOTE only",
+    "model": "Logistic Regression",
+    "weighted_f1": 0.9258
+  },
+  "logistic_regression_tuned": {
+    "Accuracy": 0.925,
+    "F1 (macro)": 0.6877,
+    "F1 (weighted)": 0.917
+  },
+  "voting_bagging_style": {
+    "Accuracy": 0.8917,
+    "F1 (macro)": 0.4294,
+    "F1 (weighted)": 0.8655
+  },
+  "stacking_boosting_style": {
+    "Accuracy": 0.8958,
+    "F1 (macro)": 0.4395,
+    "F1 (weighted)": 0.8671
+  },
+  "app_best_model_changes": false
+}

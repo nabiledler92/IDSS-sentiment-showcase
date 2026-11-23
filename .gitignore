@@ -1,0 +1,27 @@
+# Secrets: never commit real tokens
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Data: the original review dataset is private and not part of this repo
+data/*
+!data/sample_reviews_synthetic.csv
+*.xlsx
+outputs/tables/cleaned_dataset.csv
+outputs/tables/split_data.pkl
+notebooks/extended_20_results/checkpoints/
+
+# Python
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,10 @@
+[theme]
+# "Kopitiam Modern" — warm espresso/cream palette for the SME Sentiment IDSS app.
+primaryColor = "#8B5E34"
+backgroundColor = "#FAF6F0"
+secondaryBackgroundColor = "#F0E7DA"
+textColor = "#2E2620"
+font = "sans serif"
+
+[server]
+headless = true

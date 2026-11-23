@@ -1,0 +1,11 @@
+{
+  "total_reviews_raw": 1347,
+  "total_reviews_after_cleaning": 1197,
+  "class_counts": {
+    "Positive": 1054,
+    "Negative": 117,
+    "Neutral": 26
+  },
+  "avg_review_length_chars": 114.55054302422724,
+  "median_review_length_chars": 85.0
+}

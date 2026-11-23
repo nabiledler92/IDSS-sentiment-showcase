@@ -1,0 +1,32 @@
+{
+  "Naive Bayes": {
+    "test_accuracy": 0.8791666666666667,
+    "test_f1_macro": 0.31189948263118994,
+    "test_f1_weighted": 0.8226348854397635
+  },
+  "Logistic Regression": {
+    "test_accuracy": 0.8833333333333333,
+    "test_f1_macro": 0.3618827160493827,
+    "test_f1_weighted": 0.8390335648148147
+  },
+  "Decision Tree": {
+    "test_accuracy": 0.8875,
+    "test_f1_macro": 0.5165021814185327,
+    "test_f1_weighted": 0.8781437219921773
+  },
+  "SVM": {
+    "test_accuracy": 0.9041666666666667,
+    "test_f1_macro": 0.47281134676092657,
+    "test_f1_weighted": 0.8803732604152772
+  },
+  "Random Forest": {
+    "test_accuracy": 0.8875,
+    "test_f1_macro": 0.3846276765739853,
+    "test_f1_weighted": 0.8474912112496005
+  },
+  "XGBoost": {
+    "test_accuracy": 0.8916666666666667,
+    "test_f1_macro": 0.42204907886113735,
+    "test_f1_weighted": 0.8618103594747446
+  }
+}
