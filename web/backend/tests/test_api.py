@@ -208,3 +208,33 @@ def test_rate_limit(fake_hf):
         assert client.post("/api/brief", json={"stats": stats, "signature": sig}).status_code == 200
     r = client.post("/api/brief", json={"stats": stats, "signature": sig})
     assert r.status_code == 429
+
+
+def test_hf_errors_are_logged_and_explained(monkeypatch, caplog):
+    """A Hugging Face failure is logged with its status (never the token) and
+    turned into a clear message for the visitor."""
+    import huggingface_hub
+
+    class FakeResponse:
+        status_code = 403
+
+    class FakeError(Exception):
+        response = FakeResponse()
+
+    class FakeClient:
+        def __init__(self, *a, **k):
+            pass
+
+        def chat_completion(self, **k):
+            raise FakeError("403 Forbidden: insufficient permissions")
+
+    monkeypatch.setenv("HF_TOKEN", "hf_test_not_a_real_token")
+    monkeypatch.setattr(huggingface_hub, "InferenceClient", FakeClient)
+    guard._hits.clear()
+    stats, sig = signed_stats()
+    with caplog.at_level("WARNING", logger="idss.ai"):
+        r = client.post("/api/brief", json={"stats": stats, "signature": sig})
+    assert r.status_code == 502
+    assert "isn't set up correctly" in r.json()["detail"]
+    assert "status=403" in caplog.text and "hf_test_not_a_real_token" not in caplog.text
+    guard._hits.clear()

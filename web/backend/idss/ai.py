@@ -4,9 +4,11 @@ Same model and prompts as the Streamlit app. The model only ever sees the
 aggregated batch statistics, never raw review text. HF_TOKEN comes from the
 Vercel project's environment variables and never reaches the browser.
 """
+import logging
 import os
 
 HF_MODEL_ID = "Qwen/Qwen2.5-7B-Instruct"
+log = logging.getLogger("idss.ai")
 
 
 class AIError(RuntimeError):
@@ -37,14 +39,29 @@ def _chat(system_prompt: str, user_prompt: str, max_tokens: int) -> str:
             temperature=0.4,
         )
     except Exception as exc:
-        raise AIError(
-            "Hugging Face didn't return an answer just now. The free inference tier may be "
-            "busy or out of monthly credit — try again in a minute."
-        ) from exc
+        status = getattr(getattr(exc, "response", None), "status_code", None)
+        # Logged for the site owner (Vercel runtime logs). The token never
+        # appears in these messages; the response body is truncated.
+        log.warning("Hugging Face call failed: %s status=%s %s",
+                    type(exc).__name__, status, str(exc)[:500])
+        raise AIError(_visitor_message(status)) from exc
     text = (completion.choices[0].message.content or "").strip()
     if not text:
         raise AIError("The model returned an empty response. Try again in a few seconds.")
     return text
+
+
+def _visitor_message(status) -> str:
+    if status in (401, 403):
+        return ("The AI features are temporarily unavailable: the site's Hugging Face access "
+                "isn't set up correctly. The numbers on this page are unaffected.")
+    if status == 402:
+        return ("The AI features have used up this month's free Hugging Face credit. "
+                "They'll be back when it resets. The numbers on this page are unaffected.")
+    if status == 429:
+        return "Hugging Face is rate-limiting requests right now. Try again in a minute."
+    return ("Hugging Face didn't return an answer just now. The free inference tier may be "
+            "busy — try again in a minute.")
 
 
 def _pct(stats: dict) -> dict:
