@@ -1,21 +1,21 @@
 Condition,Model,Accuracy,Precision (macro),Recall (macro),F1 (macro),F1 (weighted),Prediction Time (s),Train Time (s),Best Params
-(a) Baseline,Naive Bayes,0.8792,0.2931,0.3333,0.3119,0.8226,0.001,0.0019,
-(a) Baseline,Logistic Regression,0.8833,0.5176,0.3595,0.3619,0.839,0.0002,0.0131,
-(a) Baseline,Decision Tree,0.8875,0.5551,0.5001,0.5165,0.8781,0.0004,0.044,
-(a) Baseline,SVM,0.9042,0.5696,0.4413,0.4728,0.8804,0.009,0.2763,
-(a) Baseline,Random Forest,0.8875,0.5466,0.3734,0.3846,0.8475,0.0055,0.2571,
-(a) Baseline,XGBoost,0.9,0.5608,0.4274,0.4566,0.8739,0.0029,0.5503,
-(b) SMOTE only,Naive Bayes,0.8458,0.5567,0.7498,0.6114,0.8678,0.0001,0.0012,
-(b) SMOTE only,Logistic Regression,0.9292,0.8012,0.7199,0.756,0.9258,0.0002,0.0247,
-(b) SMOTE only,Decision Tree,0.8833,0.4948,0.4826,0.4884,0.8816,0.0004,0.1024,
-(b) SMOTE only,SVM,0.9167,0.589,0.483,0.5163,0.8985,0.0165,1.6195,
-(b) SMOTE only,Random Forest,0.8958,0.8717,0.4663,0.5332,0.8688,0.0054,0.5142,
-(b) SMOTE only,XGBoost,0.8958,0.4874,0.4135,0.4317,0.8714,0.0021,3.2204,
-(c) SMOTE + GridSearchCV,Naive Bayes,0.8583,0.4697,0.547,0.4954,0.8685,,1.5293,{'alpha': 0.1}
-(c) SMOTE + GridSearchCV,Logistic Regression,0.925,0.7859,0.6286,0.6877,0.917,,0.2901,"{'C': 10, 'solver': 'lbfgs'}"
-(c) SMOTE + GridSearchCV,Decision Tree,0.8667,0.4548,0.4517,0.4532,0.8637,,1.7211,"{'max_depth': 20, 'min_samples_leaf': 2}"
-(c) SMOTE + GridSearchCV,SVM,0.9208,0.594,0.4968,0.5294,0.9041,,2.0101,{'C': 10}
-(c) SMOTE + GridSearchCV,Random Forest,0.8958,0.8717,0.4663,0.5332,0.8688,,4.703,"{'max_depth': None, 'n_estimators': 100}"
-(c) SMOTE + GridSearchCV,XGBoost,0.8917,0.4984,0.4242,0.4447,0.8699,,19.5757,"{'max_depth': 4, 'n_estimators': 100}"
-(d) Ensemble - Bagging-style,RF + XGBoost (Voting / Bagging-style),0.8917,0.4846,0.4119,0.4294,0.8655,,2.806,
-(e) Ensemble - Boosting-style,RF + XGBoost (Stacking / Boosting-style),0.8958,0.5503,0.4135,0.4395,0.8671,,7.9138,
+(a) Baseline,Naive Bayes,0.8792,0.2931,0.3333,0.3119,0.8226,0.0005,0.0111,
+(a) Baseline,Logistic Regression,0.8833,0.5176,0.3595,0.3619,0.839,0.0002,0.0219,
+(a) Baseline,Decision Tree,0.8875,0.5551,0.5001,0.5165,0.8781,0.0007,0.0522,
+(a) Baseline,SVM,0.9042,0.5696,0.4413,0.4728,0.8804,0.0095,0.318,
+(a) Baseline,Random Forest,0.8875,0.5466,0.3734,0.3846,0.8475,0.009,0.2451,
+(a) Baseline,XGBoost,0.8917,0.5384,0.3996,0.422,0.8618,0.0038,0.8629,
+(b) SMOTE only,Naive Bayes,0.8458,0.5567,0.7498,0.6114,0.8678,0.0002,0.0017,
+(b) SMOTE only,Logistic Regression,0.9292,0.8012,0.7199,0.756,0.9258,0.0002,0.0309,
+(b) SMOTE only,Decision Tree,0.8833,0.4948,0.4826,0.4884,0.8816,0.0005,0.1025,
+(b) SMOTE only,SVM,0.9167,0.589,0.483,0.5163,0.8985,0.0169,2.0028,
+(b) SMOTE only,Random Forest,0.8958,0.8717,0.4663,0.5332,0.8688,0.008,0.5641,
+(b) SMOTE only,XGBoost,0.8875,0.4693,0.4103,0.4255,0.8624,0.0037,4.2621,
+(c) SMOTE + GridSearchCV,Naive Bayes,0.8583,0.4697,0.547,0.4954,0.8685,,5.0831,{'alpha': 0.1}
+(c) SMOTE + GridSearchCV,Logistic Regression,0.925,0.7859,0.6286,0.6877,0.917,,0.3858,"{'C': 10, 'solver': 'lbfgs'}"
+(c) SMOTE + GridSearchCV,Decision Tree,0.8667,0.4548,0.4517,0.4532,0.8637,,0.9528,"{'max_depth': 20, 'min_samples_leaf': 2}"
+(c) SMOTE + GridSearchCV,SVM,0.9208,0.594,0.4968,0.5294,0.9041,,1.3072,{'C': 10}
+(c) SMOTE + GridSearchCV,Random Forest,0.8958,0.8717,0.4663,0.5332,0.8688,,2.8522,"{'max_depth': None, 'n_estimators': 100}"
+(c) SMOTE + GridSearchCV,XGBoost,0.8917,0.4846,0.4119,0.4294,0.8655,,11.3803,"{'max_depth': 4, 'n_estimators': 100}"
+(d) Ensemble - Bagging-style,RF + XGBoost (Voting / Bagging-style),0.8917,0.4846,0.4119,0.4294,0.8655,,4.228,
+(e) Ensemble - Boosting-style,RF + XGBoost (Stacking / Boosting-style),0.8917,0.5371,0.3996,0.4213,0.8599,,10.3079,

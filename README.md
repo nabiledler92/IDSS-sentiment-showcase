@@ -43,10 +43,10 @@ Best result in each condition (by weighted F1, held-out test set of 240 reviews)
 | **(b) SMOTE only** | **Logistic Regression** | **0.929** | **0.756** | **0.926** |
 | (c) SMOTE + GridSearchCV | Logistic Regression | 0.925 | 0.688 | 0.917 |
 | (d) Voting ensemble | RF + XGBoost | 0.892 | 0.429 | 0.866 |
-| (e) Stacking ensemble | RF + XGBoost | 0.896 | 0.440 | 0.867 |
+| (e) Stacking ensemble | RF + XGBoost | 0.892 | 0.421 | 0.860 |
 
 - SMOTE made the biggest difference. It roughly doubled macro F1 for Logistic Regression (0.362 to 0.756), so the minority Negative and Neutral classes became usable.
-- Combining Random Forest and XGBoost did not help. McNemar's test shows tuned Logistic Regression beating both ensembles with p ≈ 0.039.
+- Combining Random Forest and XGBoost did not help. McNemar's test shows tuned Logistic Regression beating both ensembles (p = 0.039 against voting, p = 0.021 against stacking).
 - All 20 results are in [`outputs/tables/extended_20_results/master_20_results.csv`](outputs/tables/extended_20_results/master_20_results.csv).
 
 ![All 20 model-condition results](outputs/figures/full_20_results_comparison.png)
