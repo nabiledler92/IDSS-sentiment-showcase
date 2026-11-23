@@ -26,6 +26,7 @@ python stage2_baseline_and_smoteonly.py # conditions (a) and (b)         -> chec
 python stage3_tuned.py                  # condition (c), all 6 models    -> checkpoints/stage3_tuned_partial.pkl
 python stage4_ensembles.py              # conditions (d) and (e)         -> checkpoints/stage4_ensembles.pkl
 python stage5_finalize.py               # combines everything, writes final outputs
+python stage6_export_deployed.py        # re-exports the app's model files from condition (b)
 ```
 
 `stage3_tuned.py` also accepts an optional classifier name to run just one at a
@@ -40,13 +41,22 @@ time, e.g. `python stage3_tuned.py "Random Forest"`.
 - `outputs/tables/extended_20_results/summary.json` — best-overall model/condition, key comparison numbers
 - `outputs/figures/full_20_results_comparison.png` — grouped bar chart, accuracy + weighted F1 across all 20 results
 
+`stage6_export_deployed.py` refits the six condition (b) models (SMOTE only) and
+writes what the Streamlit app loads: the files in `models/`,
+`outputs/tables/model_results_all.json` (read by the Model Info tab) and
+`outputs/figures/confusion_matrix_smote_only_lr.png`.
+
 ## Key finding
 
 Condition (b), SMOTE-only Logistic Regression (accuracy 0.9292, weighted F1 0.9258),
 beat condition (c), SMOTE + GridSearchCV Logistic Regression (accuracy 0.9250,
 weighted F1 0.9170), on every metric. It is the model shipped in
 `models/best_model.pkl`. Both ensemble combinations (d, e) underperformed tuned
-Logistic Regression, and McNemar's test puts the gap at p ≈ 0.039 for both.
+Logistic Regression, and McNemar's test confirms the gap (p = 0.039 against the
+voting ensemble, p = 0.021 against stacking).
+
+All results and model files were produced with the versions pinned in
+`requirements.txt` (scikit-learn 1.9.0, XGBoost 3.3.0).
 
 ## Notes
 

@@ -1,3 +1,3 @@
 Comparison,LR-only correct (n),Ensemble-only correct (n),Statistic,p-value,Significant at alpha=0.05
 Logistic Regression (tuned) vs RF+XGBoost Voting (bagging-style),10,2,2.0,0.03857,Yes
-Logistic Regression (tuned) vs RF+XGBoost Stacking (boosting-style),8,1,1.0,0.03906,Yes
+Logistic Regression (tuned) vs RF+XGBoost Stacking (boosting-style),9,1,1.0,0.02148,Yes

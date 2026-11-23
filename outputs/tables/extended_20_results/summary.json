@@ -16,9 +16,9 @@
     "F1 (weighted)": 0.8655
   },
   "stacking_boosting_style": {
-    "Accuracy": 0.8958,
-    "F1 (macro)": 0.4395,
-    "F1 (weighted)": 0.8671
+    "Accuracy": 0.8917,
+    "F1 (macro)": 0.4213,
+    "F1 (weighted)": 0.8599
   },
   "app_best_model_changes": false
 }

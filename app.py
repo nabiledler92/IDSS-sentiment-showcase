@@ -927,13 +927,27 @@ with tab4:
         st.write("**Name:**", active["name"])
         st.write("**Source:**", active["source"])
         st.write("**Sentiment classes:**", ", ".join(active["classes"]))
+        # Metrics come from outputs/tables/model_results_all.json (written by
+        # notebooks/extended_20_results/stage6_export_deployed.py), so this
+        # text stays correct whenever the experiments are re-run.
+        _default_results = load_default_results() or {}
+        _best_default_name = (
+            max(_default_results, key=lambda n: _default_results[n]["test_f1_weighted"])
+            if _default_results else "Logistic Regression"
+        )
+        _best_metrics = _default_results.get(_best_default_name)
+        _metrics_text = (
+            f": {_best_metrics['test_accuracy'] * 100:.1f}% accuracy, "
+            f"{_best_metrics['test_f1_weighted']:.3f} weighted F1"
+            if _best_metrics else ""
+        )
         st.write(
             "The default model was trained on 1,197 cleaned Kopi Kenangan app "
-            "reviews using TF-IDF features and a Logistic Regression classifier "
+            f"reviews using TF-IDF features and a {_best_default_name} classifier "
             "on a SMOTE-balanced training set (default hyperparameters; in the "
             "dissertation's 20-result comparison this configuration "
             "outperformed the GridSearchCV-tuned version and both RF+XGBoost "
-            "ensemble combinations: 92.9% accuracy, 0.926 weighted F1)."
+            f"ensemble combinations{_metrics_text})."
         )
         st.write(
             "To use this app for a different SME's data, go to **Train on Your "
