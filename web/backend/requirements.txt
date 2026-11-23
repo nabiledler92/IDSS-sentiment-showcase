@@ -1,0 +1,11 @@
+# Python API for the IDSS web app (Vercel Functions, Python 3.13).
+# scikit-learn/numpy/joblib match the versions the model files were saved with.
+fastapi==0.165.0
+python-multipart==0.0.34
+scikit-learn==1.9.0
+numpy==2.5.0
+scipy==1.18.1
+joblib==1.5.3
+Sastrawi==1.0.1
+openpyxl==3.1.5
+huggingface_hub==1.24.0

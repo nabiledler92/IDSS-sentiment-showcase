@@ -4,6 +4,8 @@ Showcase code for my Master of Data Science dissertation, *Machine Learning-Base
 
 It classifies the sentiment of informal, code-switched customer reviews and turns the results into a Streamlit decision-support app for small F&B businesses. The app has an optional LLM analyst built on Qwen 2.5 7B.
 
+**Try it:** [idss.nabil-takiyuddin.dev](https://idss.nabil-takiyuddin.dev) (fast web version on Vercel) or the [Streamlit app](https://kopi-sentiment-idss.streamlit.app/) (includes retraining on your own data)
+
 **Case study:** [nabil-takiyuddin.dev/projects/kopi-sentiment-idss](https://nabil-takiyuddin.dev/projects/kopi-sentiment-idss)
 
 ![Batch analysis of a review file](docs/screenshots/batch-analysis.png)
@@ -115,6 +117,7 @@ outputs/figures/           Charts (EDA, confusion matrices, model comparisons)
 outputs/tables/            Metrics tables (CSV/JSON), no review text
 data/                      Synthetic sample only (see "Data")
 docs/screenshots/          App screenshots
+web/                       Vercel version: Next.js frontend + FastAPI backend (see web/README.md)
 ```
 
 ## Limitations
