@@ -22,7 +22,7 @@ function Off({ meta }: { meta: Meta | null }) {
   return (
     <p className="caption">
       The AI features aren&apos;t switched on right now. When they are, an open-source model (
-      <code>{meta?.aiModel ?? "Qwen/Qwen2.5-7B-Instruct"}</code>, through Hugging Face) reads only the
+      <code>{meta?.aiModel ?? "Qwen/Qwen2.5-72B-Instruct"}</code>, through Hugging Face) reads only the
       numbers on this page, never the reviews themselves.
     </p>
   );
