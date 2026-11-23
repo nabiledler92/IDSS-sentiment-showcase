@@ -1,0 +1,238 @@
+{
+  "deployedModel": "Logistic Regression with SMOTE",
+  "best": {
+    "name": "Logistic Regression",
+    "accuracy": 0.9291666666666667,
+    "f1Macro": 0.7559671658032313,
+    "f1Weighted": 0.9258078442504671,
+    "report": {
+      "Negative": {
+        "precision": 0.7,
+        "recall": 0.5833333333333334,
+        "f1-score": 0.6363636363636364,
+        "support": 24.0
+      },
+      "Neutral": {
+        "precision": 0.75,
+        "recall": 0.6,
+        "f1-score": 0.6666666666666666,
+        "support": 5.0
+      },
+      "Positive": {
+        "precision": 0.9537037037037037,
+        "recall": 0.976303317535545,
+        "f1-score": 0.9648711943793911,
+        "support": 211.0
+      }
+    },
+    "confusionMatrix": [
+      [
+        14,
+        1,
+        9
+      ],
+      [
+        1,
+        3,
+        1
+      ],
+      [
+        5,
+        0,
+        206
+      ]
+    ]
+  },
+  "smoteOnly": [
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.9291666666666667,
+      "f1Macro": 0.7559671658032313,
+      "f1Weighted": 0.9258078442504671
+    },
+    {
+      "model": "SVM",
+      "accuracy": 0.9166666666666666,
+      "f1Macro": 0.5163108313793245,
+      "f1Weighted": 0.8984815294746801
+    },
+    {
+      "model": "Decision Tree",
+      "accuracy": 0.8833333333333333,
+      "f1Macro": 0.4883784522832923,
+      "f1Weighted": 0.8815764287667487
+    },
+    {
+      "model": "Random Forest",
+      "accuracy": 0.8958333333333334,
+      "f1Macro": 0.5331601899722486,
+      "f1Weighted": 0.8687548039191889
+    },
+    {
+      "model": "Naive Bayes",
+      "accuracy": 0.8458333333333333,
+      "f1Macro": 0.6114155899054933,
+      "f1Weighted": 0.8677520190195783
+    },
+    {
+      "model": "XGBoost",
+      "accuracy": 0.8875,
+      "f1Macro": 0.4254619083776259,
+      "f1Weighted": 0.862433561123766
+    }
+  ],
+  "twentyResults": [
+    {
+      "condition": "(a) Baseline",
+      "model": "Naive Bayes",
+      "accuracy": 0.8792,
+      "f1Macro": 0.3119,
+      "f1Weighted": 0.8226
+    },
+    {
+      "condition": "(a) Baseline",
+      "model": "Logistic Regression",
+      "accuracy": 0.8833,
+      "f1Macro": 0.3619,
+      "f1Weighted": 0.839
+    },
+    {
+      "condition": "(a) Baseline",
+      "model": "Decision Tree",
+      "accuracy": 0.8875,
+      "f1Macro": 0.5165,
+      "f1Weighted": 0.8781
+    },
+    {
+      "condition": "(a) Baseline",
+      "model": "SVM",
+      "accuracy": 0.9042,
+      "f1Macro": 0.4728,
+      "f1Weighted": 0.8804
+    },
+    {
+      "condition": "(a) Baseline",
+      "model": "Random Forest",
+      "accuracy": 0.8875,
+      "f1Macro": 0.3846,
+      "f1Weighted": 0.8475
+    },
+    {
+      "condition": "(a) Baseline",
+      "model": "XGBoost",
+      "accuracy": 0.8917,
+      "f1Macro": 0.422,
+      "f1Weighted": 0.8618
+    },
+    {
+      "condition": "(b) SMOTE only",
+      "model": "Naive Bayes",
+      "accuracy": 0.8458,
+      "f1Macro": 0.6114,
+      "f1Weighted": 0.8678
+    },
+    {
+      "condition": "(b) SMOTE only",
+      "model": "Logistic Regression",
+      "accuracy": 0.9292,
+      "f1Macro": 0.756,
+      "f1Weighted": 0.9258
+    },
+    {
+      "condition": "(b) SMOTE only",
+      "model": "Decision Tree",
+      "accuracy": 0.8833,
+      "f1Macro": 0.4884,
+      "f1Weighted": 0.8816
+    },
+    {
+      "condition": "(b) SMOTE only",
+      "model": "SVM",
+      "accuracy": 0.9167,
+      "f1Macro": 0.5163,
+      "f1Weighted": 0.8985
+    },
+    {
+      "condition": "(b) SMOTE only",
+      "model": "Random Forest",
+      "accuracy": 0.8958,
+      "f1Macro": 0.5332,
+      "f1Weighted": 0.8688
+    },
+    {
+      "condition": "(b) SMOTE only",
+      "model": "XGBoost",
+      "accuracy": 0.8875,
+      "f1Macro": 0.4255,
+      "f1Weighted": 0.8624
+    },
+    {
+      "condition": "(c) SMOTE + GridSearchCV",
+      "model": "Naive Bayes",
+      "accuracy": 0.8583,
+      "f1Macro": 0.4954,
+      "f1Weighted": 0.8685
+    },
+    {
+      "condition": "(c) SMOTE + GridSearchCV",
+      "model": "Logistic Regression",
+      "accuracy": 0.925,
+      "f1Macro": 0.6877,
+      "f1Weighted": 0.917
+    },
+    {
+      "condition": "(c) SMOTE + GridSearchCV",
+      "model": "Decision Tree",
+      "accuracy": 0.8667,
+      "f1Macro": 0.4532,
+      "f1Weighted": 0.8637
+    },
+    {
+      "condition": "(c) SMOTE + GridSearchCV",
+      "model": "SVM",
+      "accuracy": 0.9208,
+      "f1Macro": 0.5294,
+      "f1Weighted": 0.9041
+    },
+    {
+      "condition": "(c) SMOTE + GridSearchCV",
+      "model": "Random Forest",
+      "accuracy": 0.8958,
+      "f1Macro": 0.5332,
+      "f1Weighted": 0.8688
+    },
+    {
+      "condition": "(c) SMOTE + GridSearchCV",
+      "model": "XGBoost",
+      "accuracy": 0.8917,
+      "f1Macro": 0.4294,
+      "f1Weighted": 0.8655
+    },
+    {
+      "condition": "(d) Ensemble - Bagging-style",
+      "model": "RF + XGBoost (Voting / Bagging-style)",
+      "accuracy": 0.8917,
+      "f1Macro": 0.4294,
+      "f1Weighted": 0.8655
+    },
+    {
+      "condition": "(e) Ensemble - Boosting-style",
+      "model": "RF + XGBoost (Stacking / Boosting-style)",
+      "accuracy": 0.8917,
+      "f1Macro": 0.4213,
+      "f1Weighted": 0.8599
+    }
+  ],
+  "mcnemar": [
+    {
+      "comparison": "Logistic Regression (tuned) vs RF+XGBoost Voting (bagging-style)",
+      "pValue": 0.03857,
+      "significant": true
+    },
+    {
+      "comparison": "Logistic Regression (tuned) vs RF+XGBoost Stacking (boosting-style)",
+      "pValue": 0.02148,
+      "significant": true
+    }
+  ]
+}

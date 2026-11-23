@@ -25,3 +25,10 @@ __pycache__/
 Thumbs.db
 .vscode/
 .idea/
+
+# Web app (web/) build output and dependencies
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+.vercel/
