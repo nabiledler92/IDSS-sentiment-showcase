@@ -2,7 +2,7 @@
 
 Showcase code for my Master of Data Science dissertation, *Machine Learning-Based Sentiment Analysis for an Intelligent Decision Support System in Malaysian Kopi F&B SMEs*, supervised by Ts Dr Ahmad Faiz Mohd Ghazali at UiTM.
 
-It classifies the sentiment of informal, code-switched customer reviews and turns the results into a Streamlit decision-support app for small F&B businesses. The app has an optional LLM analyst built on Qwen 2.5 7B.
+It classifies the sentiment of informal, code-switched customer reviews and turns the results into a Streamlit decision-support app for small F&B businesses. The app has an optional LLM analyst built on Qwen 2.5 72B.
 
 **Try it:** [idss.nabil-takiyuddin.dev](https://idss.nabil-takiyuddin.dev) (fast web version on Vercel) or the [Streamlit app](https://kopi-sentiment-idss.streamlit.app/) (includes retraining on your own data)
 
@@ -62,7 +62,7 @@ The Streamlit app wraps the model in four tabs:
 - **Train on Your Own Data.** Upload any review export with ratings or labels, retrain all six classifiers (with optional SMOTE and tuning), compare them, and make the best one the active model. No code changes are needed.
 - **Model Info.** Details of the active model and a plain-language explanation of why it was chosen.
 
-With a Hugging Face token, the app also writes a short **AI insights brief** for each batch and answers **follow-up questions** grounded only in the statistics on screen. Both use `Qwen/Qwen2.5-7B-Instruct` through the Hugging Face Inference API. Without a token, these features stay switched off and everything else still works.
+With a Hugging Face token, the app also writes a short **AI insights brief** for each batch and answers **follow-up questions** grounded only in the statistics on screen. Both use `Qwen/Qwen2.5-72B-Instruct` through the Hugging Face Inference API. Without a token, these features stay switched off and everything else still works.
 
 | Analyze a review | Model info |
 |---|---|
@@ -70,7 +70,7 @@ With a Hugging Face token, the app also writes a short **AI insights brief** for
 
 ## Tech stack
 
-Python, pandas, scikit-learn, XGBoost, imbalanced-learn (SMOTE), Sastrawi, statsmodels (McNemar's test), matplotlib, seaborn, Streamlit, and Qwen 2.5 7B Instruct via `huggingface_hub`.
+Python, pandas, scikit-learn, XGBoost, imbalanced-learn (SMOTE), Sastrawi, statsmodels (McNemar's test), matplotlib, seaborn, Streamlit, and Qwen 2.5 72B Instruct via `huggingface_hub`.
 
 ## Run it locally
 

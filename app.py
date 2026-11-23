@@ -170,7 +170,7 @@ def kpi_tile_html(label, value, sub, accent):
 # Swap HF_MODEL_ID for any other instruction-tuned model on the Hub if this
 # one becomes unavailable via Inference Providers.
 # ----------------------------------------------------------------------
-HF_MODEL_ID = "Qwen/Qwen2.5-7B-Instruct"
+HF_MODEL_ID = "Qwen/Qwen2.5-72B-Instruct"
 # Where visitors are sent to learn how to enable the AI features (README's
 # "Run it locally" section, which covers adding HF_TOKEN).
 AI_SETUP_URL = "https://github.com/nabiledler92/IDSS-sentiment-showcase#run-it-locally"

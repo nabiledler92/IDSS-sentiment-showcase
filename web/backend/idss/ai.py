@@ -7,7 +7,7 @@ Vercel project's environment variables and never reaches the browser.
 import logging
 import os
 
-HF_MODEL_ID = "Qwen/Qwen2.5-7B-Instruct"
+HF_MODEL_ID = "Qwen/Qwen2.5-72B-Instruct"
 log = logging.getLogger("idss.ai")
 
 

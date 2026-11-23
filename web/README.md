@@ -18,7 +18,7 @@ web/
 
 - **Predictions** use the same pickled model files as the Streamlit app (`best_model.pkl`, `tfidf_vectorizer.pkl`, `label_encoder.pkl`). `backend/tests` checks that the cleaned text, labels, probabilities, themes and category counts match the Streamlit pipeline exactly.
 - **Uploads** are read in memory and never stored. Limits: 4 MB and 5,000 rows per file (Vercel caps request bodies at 4.5 MB).
-- **AI brief and Q&A** call `Qwen/Qwen2.5-7B-Instruct` through Hugging Face with the `HF_TOKEN` environment variable, server-side only. The model sees only the aggregated batch statistics, never review text. To keep the endpoints from being used as a free LLM proxy:
+- **AI brief and Q&A** call `Qwen/Qwen2.5-72B-Instruct` through Hugging Face with the `HF_TOKEN` environment variable, server-side only. The model sees only the aggregated batch statistics, never review text. To keep the endpoints from being used as a free LLM proxy:
   - `/api/batch` signs the statistics it returns (HMAC), and `/api/brief` and `/api/ask` reject any statistics without a valid signature.
   - Each visitor gets 8 AI requests per 10 minutes. The limit is held in memory per function instance, so it isn't global; add a Vercel Firewall rate-limit rule on `/api/brief` and `/api/ask` for a hard cap.
   - Without `HF_TOKEN`, the AI sections say the features are switched off. Everything else works.
