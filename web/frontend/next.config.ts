@@ -7,9 +7,12 @@ const isDev = process.env.NODE_ENV === "development";
 // started with `uvicorn main:app --port 8000` (see web/README.md).
 const API_DEV_ORIGIN = process.env.API_DEV_ORIGIN ?? "http://127.0.0.1:8000";
 
+// Vercel Web Analytics loads /_vercel/insights/script.js and posts page views to
+// /_vercel/insights on this same origin, so 'self' covers it in production. In
+// development it loads a debug script from va.vercel-scripts.com instead.
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval' https://va.vercel-scripts.com" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'",

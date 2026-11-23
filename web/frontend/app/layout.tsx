@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Fraunces, Inter } from "next/font/google";
 import { Tabs } from "@/components/Tabs";
 import info from "@/data/model-info.json";
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="tab-body">{children}</div>
           </main>
         </div>
+        <Analytics />
       </body>
     </html>
   );
