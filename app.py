@@ -171,6 +171,9 @@ def kpi_tile_html(label, value, sub, accent):
 # one becomes unavailable via Inference Providers.
 # ----------------------------------------------------------------------
 HF_MODEL_ID = "Qwen/Qwen2.5-7B-Instruct"
+# Where visitors are sent to learn how to enable the AI features (README's
+# "Run it locally" section, which covers adding HF_TOKEN).
+AI_SETUP_URL = "https://github.com/nabiledler92/IDSS-sentiment-showcase#run-it-locally"
 
 
 @st.cache_resource(show_spinner=False)
@@ -288,8 +291,10 @@ def ai_brief_section(cache_key, generate_fn, *, button_label="Generate AI insigh
     st.markdown("**🤖 AI insights brief**")
     if not hf_token_available():
         st.caption(
-            "Add an `HF_TOKEN` to Streamlit secrets to enable this (uses an open-source "
-            f"model, `{HF_MODEL_ID}`, hosted via Hugging Face's free Inference API)."
+            "Switched off in this public demo. When you run the app yourself with a free "
+            "Hugging Face token, it writes a short, plain-language brief of the results "
+            f"using the open-source `{HF_MODEL_ID}` model. "
+            f"[How to turn it on]({AI_SETUP_URL})"
         )
         return
     if not enabled:
@@ -370,8 +375,10 @@ def qa_chat_section(cache_key, context):
     st.markdown("**💬 Ask a follow-up question**")
     if not hf_token_available():
         st.caption(
-            "Add an `HF_TOKEN` to Streamlit secrets to enable this "
-            f"(uses `{HF_MODEL_ID}` via Hugging Face's free Inference API)."
+            "Switched off in this public demo. When you run the app yourself with a free "
+            "Hugging Face token, you can ask questions about the results and get answers "
+            f"from `{HF_MODEL_ID}` based only on the numbers shown here. "
+            f"[How to turn it on]({AI_SETUP_URL})"
         )
         return
 
