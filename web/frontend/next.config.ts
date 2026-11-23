@@ -28,6 +28,10 @@ const csp = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Serve images as-is. Under Vercel Services the /_next/image optimizer
+  // returns 404 for this project, and the only images are two static PNG
+  // charts in public/figures, so optimisation adds nothing.
+  images: { unoptimized: true },
   async rewrites() {
     return isDev ? [{ source: "/api/:path*", destination: `${API_DEV_ORIGIN}/api/:path*` }] : [];
   },
