@@ -1,3 +1,4 @@
+import { withSentryConfig } from "@sentry/nextjs/config";
 import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV === "development";
@@ -65,4 +66,15 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// Sentry (Vercel marketplace integration, shared with nabil-takiyuddin.dev):
+// SENTRY_ORG, SENTRY_PROJECT and SENTRY_AUTH_TOKEN are set by the integration
+// and used to upload source maps during the build. Browser events go through
+// a same-origin tunnel, so the CSP needs no Sentry hosts ('self' covers it).
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: !process.env.CI,
+  widenClientFileUpload: true,
+  bundleSizeOptimizations: { excludeDebugStatements: true, excludeTracing: true },
+});
