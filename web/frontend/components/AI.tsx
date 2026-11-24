@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ask, getBrief, getMeta, type Meta, type Stats } from "@/lib/api";
+import { track } from "@/lib/track";
 import { Prose } from "./Prose";
 
 export function useMeta() {
@@ -41,8 +42,10 @@ export function AiBrief({ meta, batch }: { meta: Meta | null; batch: { stats: St
     setError(null);
     try {
       setText((await getBrief(batch.stats, batch.signature)).text);
+      track("ai_brief_generate", { status: "success" });
     } catch (e) {
       setError(e instanceof Error ? e.message : "Couldn't generate a brief right now.");
+      track("ai_brief_generate", { status: "error" });
     } finally {
       setBusy(false);
     }
@@ -114,9 +117,12 @@ export function QaChat({ meta, batch }: { meta: Meta | null; batch: { stats: Sta
     try {
       const { text } = await ask(batch.stats, batch.signature, q);
       setTurns((t) => t.map((x, i) => (i === t.length - 1 ? { ...x, a: text } : x)));
+      // Status only; never the question or the answer.
+      track("ai_question_ask", { status: "success" });
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Couldn't answer right now.";
       setTurns((t) => t.map((x, i) => (i === t.length - 1 ? { ...x, error: msg } : x)));
+      track("ai_question_ask", { status: "error" });
     } finally {
       setBusy(false);
     }

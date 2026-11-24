@@ -14,6 +14,7 @@ import {
   type Columns,
   type Term,
 } from "@/lib/api";
+import { track } from "@/lib/track";
 
 const CATEGORY_ORDER = ["Service", "Product Quality", "Price"];
 
@@ -28,10 +29,13 @@ export function BatchAnalyze() {
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState<"read" | "run" | "csv" | null>(null);
   const [drag, setDrag] = useState(false);
+  // Whether the current file is the bundled sample, for the batch_analyze event.
+  const [source, setSource] = useState<"upload" | "sample">("upload");
 
-  async function choose(f: File | null | undefined) {
+  async function choose(f: File | null | undefined, from: "upload" | "sample" = "upload") {
     if (!f) return;
     setFile(f);
+    setSource(from);
     setResult(null);
     setCols(null);
     setError(null);
@@ -49,9 +53,10 @@ export function BatchAnalyze() {
   }
 
   async function useSample() {
+    track("sample_file_use");
     const res = await fetch("/sample_reviews_synthetic.csv");
     const blob = await res.blob();
-    await choose(new File([blob], "sample_reviews_synthetic.csv", { type: "text/csv" }));
+    await choose(new File([blob], "sample_reviews_synthetic.csv", { type: "text/csv" }), "sample");
   }
 
   async function run() {
@@ -59,7 +64,10 @@ export function BatchAnalyze() {
     setBusy("run");
     setError(null);
     try {
-      setResult(await runBatch(file, textCol, stopwords));
+      const r = await runBatch(file, textCol, stopwords);
+      setResult(r);
+      // Counts only; never the file name or contents.
+      track("batch_analyze", { source, row_count: r.total });
     } catch (e) {
       setResult(null);
       setError(e instanceof Error ? e.message : "Couldn't analyse that file.");
@@ -79,6 +87,7 @@ export function BatchAnalyze() {
       a.download = "sentiment_results.csv";
       a.click();
       URL.revokeObjectURL(url);
+      track("file_download", { file_name: "sentiment_results.csv" });
     } catch (e) {
       setError(e instanceof Error ? e.message : "Couldn't prepare the download.");
     } finally {

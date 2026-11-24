@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { SentimentCard } from "@/components/Sentiment";
 import { predict, type Prediction } from "@/lib/api";
+import { track } from "@/lib/track";
 
 const EXAMPLES = [
   "Order sampai lambat sejam, air dah cair. Sangat kecewa dengan servis",
@@ -23,7 +24,13 @@ export function ReviewForm() {
     setBusy(true);
     setError(null);
     try {
-      setResult(await predict(text, stopwords));
+      const prediction = await predict(text, stopwords);
+      setResult(prediction);
+      // Only whether an example was used and the label; never the review text.
+      track("review_analyze", {
+        used_example: EXAMPLES.includes(text),
+        predicted_sentiment: prediction.label,
+      });
     } catch (err) {
       setResult(null);
       setError(err instanceof Error ? err.message : "Couldn't analyse that review.");
@@ -45,8 +52,17 @@ export function ReviewForm() {
       </label>
       <div className="row caption">
         Try an example:
-        {EXAMPLES.map((ex) => (
-          <button key={ex} type="button" className="btn btn-ghost" style={{ minHeight: 36, padding: "6px 12px", fontSize: 14 }} onClick={() => setText(ex)}>
+        {EXAMPLES.map((ex, i) => (
+          <button
+            key={ex}
+            type="button"
+            className="btn btn-ghost"
+            style={{ minHeight: 36, padding: "6px 12px", fontSize: 14 }}
+            onClick={() => {
+              setText(ex);
+              track("example_review_select", { example_index: i });
+            }}
+          >
             {ex.length > 34 ? ex.slice(0, 32) + "…" : ex}
           </button>
         ))}

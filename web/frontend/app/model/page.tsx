@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { TrackedLink } from "@/components/TrackedLink";
 import info from "@/data/model-info.json";
 
 export const metadata: Metadata = {
@@ -149,9 +150,14 @@ export default function ModelPage() {
 
       <p className="caption section">
         Want to try your own data? The{" "}
-        <a href="https://kopi-sentiment-idss.streamlit.app/">Streamlit version</a> can retrain all six classifiers on any
-        review export. Full method and code are on{" "}
-        <a href="https://github.com/nabiledler92/IDSS-sentiment-showcase">GitHub</a>.
+        <TrackedLink href="https://kopi-sentiment-idss.streamlit.app/" linkType="streamlit">
+          Streamlit version
+        </TrackedLink>{" "}
+        can retrain all six classifiers on any review export. Full method and code are on{" "}
+        <TrackedLink href="https://github.com/nabiledler92/IDSS-sentiment-showcase" linkType="source_code">
+          GitHub
+        </TrackedLink>
+        .
       </p>
     </>
   );
