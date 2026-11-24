@@ -8,9 +8,10 @@ const isDev = process.env.NODE_ENV === "development";
 // started with `uvicorn main:app --port 8000` (see web/README.md).
 const API_DEV_ORIGIN = process.env.API_DEV_ORIGIN ?? "http://127.0.0.1:8000";
 
-// Vercel Web Analytics loads /_vercel/insights/script.js and posts page views to
-// /_vercel/insights on this same origin, so 'self' covers it in production. In
-// development it loads a debug script from va.vercel-scripts.com instead.
+// Vercel Web Analytics (/_vercel/insights/script.js) and Speed Insights
+// (/_vercel/speed-insights/script.js) load from this same origin and post their
+// data back to it, so 'self' covers them in production. In development both load
+// debug scripts from va.vercel-scripts.com instead.
 //
 // Google Tag Manager (container GTM-MKG27HR8, shared with nabil-takiyuddin.dev)
 // plus GA4 and Microsoft Clarity, which the container loads. Same allow-list as
